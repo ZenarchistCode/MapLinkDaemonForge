@@ -1,0 +1,21 @@
+MapLink Icons:
+status
+go
+day
+players
+multiplequeue
+queue
+server
+map
+redirect
+moon
+status2
+plane
+boat
+car
+bus
+train
+planeticket
+ticket
+starticket
+portal

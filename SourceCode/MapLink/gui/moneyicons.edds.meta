@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{EB43884B83C5C92C}MapLink/gui/moneyicons.edds"
+ Author "desktop-tdpoqud"
+ ChangeDate -1468208484
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "moneyicons.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

@@ -1,0 +1,9 @@
+{
+    "ConfigVersion": "1",
+    "ServerURL": "https://127.0.0.1/",
+    "ServerID": "Chernarus",
+    "ServerAuth": "YOUR_DB_AUTH_FROM_UAPI_SOFTWARE_SETTINGS",
+    "QnAEnabled": 0,
+    "EnableBuiltinLogging": 0,
+    "PromptDiscordOnConnect": 0
+}

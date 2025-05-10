@@ -1,0 +1,183 @@
+{
+  "_id": {
+    "$oid": "681ee59831fd52a2306a05cd"
+  },
+  "Mod": "MapLink",
+  "Data": {
+    "m_DataReceived": 0,
+    "ConfigVersion": "0",
+    "Servers": [
+      {
+        "Name": "Chernarus",
+        "Map": "chernarusplus",
+        "IP": "127.0.0.1",
+        "Port": 2302,
+        "QueryPort": 27016,
+        "Password": "",
+        "RespawnServer": ""
+      },
+      {
+        "Name": "Livonia",
+        "Map": "enoch",
+        "IP": "127.0.0.1",
+        "Port": 2402,
+        "QueryPort": 27017,
+        "Password": "",
+        "RespawnServer": "Chernarus"
+      }
+    ],
+    "ArrivalPoints": [
+      {
+        "Name": "BerezinoToTopolin",
+        "SpawnPoints": [
+          {
+            "ServerName": "Chernarus",
+            "DisplayName": "Berezino",
+            "ProtectionTime": 30,
+            "Positions": [
+              {
+                "X": 13157.958008,
+                "Y": 1.345685,
+                "Z": 10104.488281,
+                "D": 0,
+                "Radius": -1,
+                "Chance": 1
+              }
+            ]
+          },
+          {
+            "ServerName": "Livonia",
+            "DisplayName": "Topolin",
+            "ProtectionTime": 30,
+            "Positions": [
+              {
+                "X": 729.578857,
+                "Y": 170.616776,
+                "Z": 7630.820801,
+                "D": 0,
+                "Radius": -1,
+                "Chance": 1
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "DepaturePoints": [
+      {
+        "DisplayName": "Berezino",
+        "ServerName": "Chernarus",
+        "SafeZoneRadius": 10,
+        "SafeZoneCoolDown": 30,
+        "TerminalType": "bldr_boat_small9",
+        "Position": [
+          13153.791992,
+          0.069994,
+          10101.791016
+        ],
+        "ArrivalPoints": [
+          {
+            "ArrivalPointName": "BerezinoToTopolin",
+            "Icon": "boat",
+            "TransitionWaitTime": 3,
+            "Cost": 0,
+            "AcceptedCurrencyId": 0
+          }
+        ]
+      },
+      {
+        "DisplayName": "Topolin",
+        "ServerName": "Livonia",
+        "SafeZoneRadius": 10,
+        "SafeZoneCoolDown": 30,
+        "TerminalType": "bldr_boat_small9",
+        "Position": [
+          733.644531,
+          168.891449,
+          7634.03418
+        ],
+        "ArrivalPoints": [
+          {
+            "ArrivalPointName": "BerezinoToTopolin",
+            "Icon": "boat",
+            "TransitionWaitTime": 3,
+            "Cost": 0,
+            "AcceptedCurrencyId": 0
+          }
+        ]
+      }
+    ],
+    "Currencies": [
+      {
+        "ID": 0,
+        "Name": "Rubles",
+        "Icon": "dollar",
+        "CanUseRuinedBills": 1,
+        "MoneyValues": [
+          {
+            "Item": "MoneyRuble100",
+            "Value": 100
+          },
+          {
+            "Item": "MoneyRuble50",
+            "Value": 50
+          },
+          {
+            "Item": "MoneyRuble25",
+            "Value": 25
+          },
+          {
+            "Item": "MoneyRuble10",
+            "Value": 10
+          },
+          {
+            "Item": "MoneyRuble5",
+            "Value": 5
+          },
+          {
+            "Item": "MoneyRuble1",
+            "Value": 1
+          }
+        ]
+      },
+      {
+        "ID": 1,
+        "Name": "Tickets",
+        "Icon": "ticket",
+        "CanUseRuinedBills": 0,
+        "MoneyValues": [
+          {
+            "Item": "Chernarus_Ticket",
+            "Value": 1
+          },
+          {
+            "Item": "Livonia_Ticket",
+            "Value": 1
+          },
+          {
+            "Item": "Namalsk_Ticket",
+            "Value": 1
+          },
+          {
+            "Item": "Chiemsee_Ticket",
+            "Value": 1
+          },
+          {
+            "Item": "DeerIsle_Ticket",
+            "Value": 1
+          },
+          {
+            "Item": "Essker_Ticket",
+            "Value": 1
+          },
+          {
+            "Item": "Utes_Ticket",
+            "Value": 1
+          }
+        ]
+      }
+    ],
+    "LogLevel_File": 3,
+    "LogLevel_API": 2
+  }
+}

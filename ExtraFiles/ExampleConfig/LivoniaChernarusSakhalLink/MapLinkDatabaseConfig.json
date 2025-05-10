@@ -1,0 +1,388 @@
+{
+  "_id": {
+    "$oid": "681e9f823d316e7cea23f7ea"
+  },
+  "Mod": "MapLink",
+  "Data": {
+    "m_DataReceived": 0,
+    "ConfigVersion": "0",
+    "Servers": [
+		{
+			"Name": "Chernarus",
+			"Map": "chernarusplus",
+			"IP": "127.0.0.0",
+			"Port": 2302,
+			"QueryPort": 27016,
+			"Password": "",
+			"RespawnServer": ""
+		},
+		{
+			"Name": "Livonia",
+			"Map": "enoch",
+			"IP": "127.0.0.0",
+			"Port": 2402,
+			"QueryPort": 27017,
+			"Password": "",
+			"RespawnServer": "Chernarus"
+		},
+		{
+			"Name": "Sakhal",
+			"Map": "sakhal",
+			"IP": "127.0.0.0",
+			"Port": 2502,
+			"QueryPort": 27018,
+			"Password": "",
+			"RespawnServer": "Chernarus"
+		}
+	],
+	"ArrivalPoints": [
+		{
+			"Name": "BerezinoToTopolinToSeveromork",
+			"SpawnPoints": [
+				{
+					"ServerName": "Chernarus",
+					"DisplayName": "Berezino",
+					"ProtectionTime": 30,
+					"Positions": [
+						{
+							"X": 13158.641602,
+							"Y": 1.823622,
+							"Z": 10104.964844,
+							"D": 0,
+							"Radius": 0.0,
+							"Chance": 0
+						}
+					]
+				},			
+				{
+					"ServerName": "Livonia",
+					"DisplayName": "Topolin",
+					"ProtectionTime": 30,
+					"Positions": [
+						{
+							"X": 767.501465,
+							"Y": 170.412949,
+							"Z": 7637.443848,
+							"D": 0,
+							"Radius": 0.0,
+							"Chance": 0
+						}
+					]
+				},				
+				{
+					"ServerName": "Sakhal",
+					"DisplayName": "Severomorsk",
+					"ProtectionTime": 30,
+					"Positions": [
+						{
+							"X": 9042.198242,
+							"Y": 1.388269,
+							"Z": 13883.273438,
+							"D": 0,
+							"Radius": 0.0,
+							"Chance": 0
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name": "ChernoToGrabinToSumnoe",
+			"SpawnPoints": [
+				{
+					"ServerName": "Chernarus",
+					"DisplayName": "Chernogorsk",
+					"ProtectionTime": 30,
+					"Positions": [
+						{
+							"X": 6498.047852,
+							"Y": 1.255858,
+							"Z": 2188.738525,
+							"D": 0,
+							"Radius": 0.0,
+							"Chance": 0
+						}
+					]
+				},			
+				{
+					"ServerName": "Livonia",
+					"DisplayName": "Grabin",
+					"ProtectionTime": 30,
+					"Positions": [
+						{
+							"X": 11335.360352,
+							"Y": 170.580750,
+							"Z": 11217.042969,
+							"D": 0,
+							"Radius": 0.0,
+							"Chance": 0
+						}
+					]
+				},				
+				{
+					"ServerName": "Sakhal",
+					"DisplayName": "Sumnoe",
+					"ProtectionTime": 30,
+					"Positions": [
+						{
+							"X": 14542.175781,
+							"Y": 1.690057,
+							"Z": 8913.774414,
+							"D": 0,
+							"Radius": 0.0,
+							"Chance": 0
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name": "MiddleMapHeliTerminal",
+			"SpawnPoints": [
+				{
+					"ServerName": "Chernarus",
+					"DisplayName": "Altar",
+					"ProtectionTime": 30,
+					"Positions": [
+						{
+							"X": 8228.152344,
+							"Y": 469.744696,
+							"Z": 9038.565430,
+							"D": 0,
+							"Radius": 0.0,
+							"Chance": 0
+						}
+					]
+				},
+				{
+					"ServerName": "Livonia",
+					"DisplayName": "Radunin",
+					"ProtectionTime": 30,
+					"Positions": [
+						{
+							"X": 6638.052734,
+							"Y": 285.932874,
+							"Z": 6220.032227,
+							"D": 0,
+							"Radius": 0.0,
+							"Chance": 0
+						}
+					]
+				},			
+				{
+					"ServerName": "Sakhal",
+					"DisplayName": "Nogovo",
+					"ProtectionTime": 30,
+					"Positions": [
+						{
+							"X": 7137.451172,
+							"Y": 4.217452,
+							"Z": 8339.135742,
+							"D": 0,
+							"Radius": 0.0,
+							"Chance": 0
+						}
+					]
+				}
+			]
+		}
+	],
+	"DepaturePoints": [
+		{
+			"DisplayName": "Berezino",
+			"ServerName": "Chernarus",
+			"SafeZoneRadius": 10,
+			"TerminalType": "bldr_boat_small9",
+			"Position": [
+				13154.900391,
+				0.548048,
+				10102.299805
+			],
+			"ArrivalPoints": [
+				{
+					"ArrivalPointName": "BerezinoToTopolinToSeveromork",
+					"Icon": "boat",
+					"TransitionWaitTime": 3,
+					"Cost": 0,
+					"AcceptedCurrencyId": 0
+				}
+			]
+		},
+		{
+			"DisplayName": "Topolin",
+			"ServerName": "Livonia",
+			"SafeZoneRadius": 10,
+			"TerminalType": "bldr_boat_small9",
+			"Position": [
+				772.581970,
+				169.136993,
+				7636.040039
+			],
+			"ArrivalPoints": [
+				{
+					"ArrivalPointName": "BerezinoToTopolinToSeveromork",
+					"Icon": "boat",
+					"TransitionWaitTime": 3,
+					"Cost": 0,
+					"AcceptedCurrencyId": 0
+				}
+			]
+		},
+		{
+			"DisplayName": "Severomorsk",
+			"ServerName": "Sakhal",
+			"SafeZoneRadius": 10,
+			"TerminalType": "bldr_boat_small9",
+			"Position": [
+				9047.259766,
+				0.012430,
+				13883.799805
+			],
+			"ArrivalPoints": [
+				{
+					"ArrivalPointName": "BerezinoToTopolinToSeveromork",
+					"Icon": "boat",
+					"TransitionWaitTime": 3,
+					"Cost": 0,
+					"AcceptedCurrencyId": 0
+				}
+			]
+		},
+		{
+			"DisplayName": "Chernogorsk",
+			"ServerName": "Chernarus",
+			"SafeZoneRadius": 10,
+			"TerminalType": "bldr_boat_small9",
+			"Position": [
+				6501.937500,
+				-0.019806,
+				2191.357422
+			],
+			"ArrivalPoints": [
+				{
+					"ArrivalPointName": "ChernoToGrabinToSumnoe",
+					"Icon": "boat",
+					"TransitionWaitTime": 3,
+					"Cost": 0,
+					"AcceptedCurrencyId": 0
+				}
+			]
+		},
+		{
+			"DisplayName": "Grabin",
+			"ServerName": "Livonia",
+			"SafeZoneRadius": 10,
+			"TerminalType": "bldr_boat_small9",
+			"Position": [
+				11330.500000,
+				169.304993,
+				11217.799805
+			],
+			"ArrivalPoints": [
+				{
+					"ArrivalPointName": "ChernoToGrabinToSumnoe",
+					"Icon": "boat",
+					"TransitionWaitTime": 3,
+					"Cost": 0,
+					"AcceptedCurrencyId": 0
+				}
+			]
+		},
+		{
+			"DisplayName": "Sumnoe",
+			"ServerName": "Sakhal",
+			"SafeZoneRadius": 10,
+			"TerminalType": "bldr_boat_small9",
+			"Position": [
+				14547.599609,
+				-0.017139,
+				8914.519531
+			],
+			"ArrivalPoints": [
+				{
+					"ArrivalPointName": "ChernoToGrabinToSumnoe",
+					"Icon": "boat",
+					"TransitionWaitTime": 3,
+					"Cost": 0,
+					"AcceptedCurrencyId": 0
+				}
+			]
+		},
+		{
+			"DisplayName": "Altar",
+			"ServerName": "Chernarus",
+			"SafeZoneRadius": 10,
+			"TerminalType": "HiveStaticHeli",
+			"Position": [
+				8229.091797,
+				471.185577,
+				9031.171875
+			],
+			"ArrivalPoints": [
+				{
+					"ArrivalPointName": "MiddleMapHeliTerminal",
+					"Icon": "heli",
+					"TransitionWaitTime": 3,
+					"Cost": 0,
+					"AcceptedCurrencyId": 0
+				}
+			]
+		},
+		{
+			"DisplayName": "Radunin",
+			"ServerName": "Livonia",
+			"SafeZoneRadius": 10,
+			"TerminalType": "HiveStaticHeli",
+			"Position": [
+				6640.201172,
+				287.593750,
+				6209.452148
+			],
+			"ArrivalPoints": [
+				{
+					"ArrivalPointName": "MiddleMapHeliTerminal",
+					"Icon": "heli",
+					"TransitionWaitTime": 3,
+					"Cost": 0,
+					"AcceptedCurrencyId": 0
+				}
+			]
+		},
+		{
+			"DisplayName": "Nogovo",
+			"ServerName": "Sakhal",
+			"SafeZoneRadius": 10,
+			"TerminalType": "HiveStaticHeli",
+			"Position": [
+				7148.439941,
+				5.804850,
+				8342.990234
+			],
+			"ArrivalPoints": [
+				{
+					"ArrivalPointName": "MiddleMapHeliTerminal",
+					"Icon": "heli",
+					"TransitionWaitTime": 3,
+					"Cost": 0,
+					"AcceptedCurrencyId": 0
+				}
+			]
+		}
+	],
+	"Currencies": [
+		{
+			"ID": 0,
+			"Name": "Tickets",
+			"Icon": "ticket",
+			"MoneyValues": [
+				{
+					"Item": "SparkPlug",
+					"Value": 1
+				}
+			]
+		}
+	],
+    "LogLevel_File": 3,
+    "LogLevel_API": 2
+  }
+}
