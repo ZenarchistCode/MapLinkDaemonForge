@@ -30,7 +30,6 @@ NOTE: In the video guide I state that I thought respawning on the same server yo
 
 It's easy to set it up so the player can respawn on whatever server they travel to, just make the respawn server the same server - eg:
 
-```
    "Name": "Chernarus",
    "Map": "chernarusplus",
    "IP": "127.0.0.1",
@@ -42,7 +41,10 @@ It's easy to set it up so the player can respawn on whatever server they travel 
    "Name": "Livonia",
    "Map": "enoch",
    "IP": "127.0.0.1",
-```
+   "Port": 2402,
+   "QueryPort": 27017,
+   "Password": "",
+   "RespawnServer": "Livonia"
 
 Credit:
 
