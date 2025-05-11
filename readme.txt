@@ -26,6 +26,24 @@ There is a YouTube video on my channel explaining how the mod works: https://you
 
 There are example config files and more info in the "extras" folder inside the mod.
 
+NOTE: In the video guide I state that I thought respawning on the same server you travel to was bugged (ie. you couldn't make it so transferring from Chernarus to Livonia and dying in Livonia allowed you to respawn in Livonia and not back on Chernarus) - this is wrong.
+
+It's easy to set it up so the player can respawn on whatever server they travel to, just make the respawn server the same server - eg:
+
+```
+   "Name": "Chernarus",
+   "Map": "chernarusplus",
+   "IP": "127.0.0.1",
+   "Port": 2302,
+   "QueryPort": 27016,
+   "Password": "",
+   "RespawnServer": "Chernarus"
+ 
+   "Name": "Livonia",
+   "Map": "enoch",
+   "IP": "127.0.0.1",
+```
+
 Credit:
 
 All credit goes to Daemonforge: I simply tidied up his mod for the latest 1.28 DayZ codebase. Check out his original mod code (and download the required API webservice installer) on his GitHub: 
