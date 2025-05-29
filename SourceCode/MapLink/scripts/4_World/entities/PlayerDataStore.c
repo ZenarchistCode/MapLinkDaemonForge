@@ -175,7 +175,7 @@ modded class PlayerDataStore extends Managed
 		player.SetLifeSpanStateVisible(m_LifeSpanState);
 		player.SetLastShavedSeconds(m_LastShavedSeconds);
 		player.SetBloodyHands(m_HasBloodyHandsVisible);
-		
+
 		player.OnUApiLoad(this);
 		
 		player.GetStatBloodType().Set(m_BloodType);

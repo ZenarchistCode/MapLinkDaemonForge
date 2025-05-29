@@ -16,14 +16,14 @@ class CfgVehicles
 	class HouseNoDestruct;
 	class GN_Hive_Boat : HouseNoDestruct
 	{
-		scope=2;
+		scope=1;
 		displayName = "GN_Hive_Boat";
 		descriptionShort = "Testing";
 		model="MapLink\data\StaticAssests\Boat.p3d";
 	};
 	class Hive_Small_Boarding_Plank : HouseNoDestruct
 	{
-		scope=2;
+		scope=1;
 		displayName = "GN_Hive_Boat";
 		descriptionShort = "Testing";
 		model="MapLink\data\StaticAssests\ShortPlank.p3d";
@@ -32,7 +32,7 @@ class CfgVehicles
 	};
 	class Hive_Medium_Boarding_Plank : HouseNoDestruct
 	{
-		scope=2;
+		scope=1;
 		displayName = "GN_Hive_Boat";
 		descriptionShort = "Testing";
 		model="MapLink\data\StaticAssests\MediumPLank.p3d";
@@ -41,7 +41,7 @@ class CfgVehicles
 	};
 	class Hive_Long_Boarding_Plank : HouseNoDestruct
 	{
-		scope=2;
+		scope=1;
 		displayName = "GN_Hive_Boat";
 		descriptionShort = "Testing";
 		model="MapLink\data\StaticAssests\LongPlank.p3d";
@@ -50,7 +50,7 @@ class CfgVehicles
 	};
 	class HiveStaticHeli: HouseNoDestruct
 	{
-		scope=2;
+		scope=1;
 		displayName="GN_Hive_Boat";
 		descriptionShort="";
 		model="MapLink\data\StaticAssests\StaticHeli.p3d";

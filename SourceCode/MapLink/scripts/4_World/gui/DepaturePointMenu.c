@@ -25,6 +25,8 @@ class DeparturePointMenu extends UIScriptedMenu
 	
 	protected string m_TravelTo_ArrivalPoint;
 	protected string m_TravelTo_ServerName;
+
+	protected bool m_CanTravel = false;
 	
 	override Widget Init()
     {
@@ -46,6 +48,8 @@ class DeparturePointMenu extends UIScriptedMenu
 		
 		
 		GetGame().GetCallQueue(CALL_CATEGORY_GUI).CallLater(this.CreateChildern, 50);
+		m_CanTravel = false;
+
 		return layoutRoot;
 	}
 	
@@ -66,6 +70,49 @@ class DeparturePointMenu extends UIScriptedMenu
 		m_MapLinkDepaturePoint = MapLinkDepaturePoint.Cast(dPoint);
 		m_Heading.SetText(m_MapLinkDepaturePoint.DisplayName);
 		MLLockControls();
+	}
+
+	void UpdateCooldownTimer()
+	{
+		PlayerBase pb = PlayerBase.Cast(GetGame().GetPlayer());
+		if (!pb)
+			return;
+
+		int nowTimestamp = UUtil.GetUnixInt();
+		int lastTravelTimestamp = pb.GetLastMapTransferTimestamp();
+		int timePassed = -1;
+		int i;
+		DeparturePointWidget widget;
+
+		if (lastTravelTimestamp > 0)
+		{
+			timePassed = nowTimestamp - lastTravelTimestamp;
+			if (timePassed < pb.GetSecondsCooldownBetweenTransfer())
+			{
+				int secs = pb.GetSecondsCooldownBetweenTransfer() - timePassed;
+				string timeDelay = "\n" + "#STR_MapLink_Cooldown: " + secs + " #dayz_game_seconds";
+				m_Heading.SetText(m_MapLinkDepaturePoint.DisplayName + timeDelay);
+
+				for (i = 0; i < dPointWidgets.Count(); i++)
+				{
+					widget = dPointWidgets.Get(i);
+					widget.m_ServerOnline = false;
+					widget.m_Transfer.SetAlpha(0.3);
+				}
+
+				GetGame().GetCallQueue(CALL_CATEGORY_GUI).CallLater(UpdateCooldownTimer, 1000, false);
+				return;
+			}
+		}
+
+		for (i = 0; i < dPointWidgets.Count(); i++)
+		{
+			widget = dPointWidgets.Get(i);
+			widget.QueryServer();
+		}
+
+		m_Heading.SetText(m_MapLinkDepaturePoint.DisplayName);
+		m_CanTravel = true;
 	}
 
 	void CreateChildern()
@@ -90,6 +137,11 @@ class DeparturePointMenu extends UIScriptedMenu
 	
 	void InitTravel(string arrivalPoint, int CountDown, string serverName)
 	{
+		if (!m_CanTravel)
+		{
+			return;
+		}
+
 		m_TravelTo_ArrivalPoint = arrivalPoint;
 		m_TravelTo_ServerName = serverName;
 		CountDownTimeRemaining = CountDown;

@@ -55,23 +55,9 @@ class DeparturePointWidget  extends ScriptedWidgetEventHandler
 		
 		m_Queue_Frame 		= Widget.Cast(m_Root.FindAnyWidget("Queue_Frame"));
 		m_Queue_Text 		= TextWidget.Cast(m_Root.FindAnyWidget("Queue_Text"));
-		
-		UApiServerData serverData = UApiServerData.Cast(GetMapLinkConfig().GetServer(spawnPoint.ServerName));
 
-		if (serverData.QueryPort > 0)
-		{
-			m_Status_Frame.Show(true);
-			m_LookupCid = UApi().api().SteamQuery(serverData.IP, serverData.QueryPort.ToString(), this, "UpdateServerStatus");
-			
-			m_ServerOnline = false;
-		} else 
-		{
-			m_Status_Frame.Show(false);
-		}
-		
-		m_TransferImage.LoadImageFile(0, m_ArrivalPoint.GetIcon());
-		
-		m_Name.SetText(m_MapLinkSpawnPoint.DisplayName);
+		QueryServer();
+
 		if (m_ArrivalPoint.Cost > 0)
 		{
 			m_Cost_Frame.Show(true);
@@ -96,10 +82,31 @@ class DeparturePointWidget  extends ScriptedWidgetEventHandler
 			m_Cost_Frame.Show(false);
 		}
 		
-		m_Map_Text.SetText(GetMapLinkConfig().GetNiceMapName(serverData.Map));
-		
 		m_Root.SetHandler(this);
 		m_Root.Show(true);
+	}
+
+	void QueryServer()
+	{
+		m_Status_Text.SetText("#STR_MapLink_Querying");
+
+		UApiServerData serverData = UApiServerData.Cast(GetMapLinkConfig().GetServer(m_MapLinkSpawnPoint.ServerName));
+
+		if (serverData.QueryPort > 0)
+		{
+			m_Status_Frame.Show(true);
+			m_LookupCid = UApi().api().SteamQuery(serverData.IP, serverData.QueryPort.ToString(), this, "UpdateServerStatus");
+			
+			m_ServerOnline = false;
+		} else 
+		{
+			m_Status_Frame.Show(false);
+		}
+		
+		m_TransferImage.LoadImageFile(0, m_ArrivalPoint.GetIcon());
+		
+		m_Name.SetText(m_MapLinkSpawnPoint.DisplayName);
+		m_Map_Text.SetText(GetMapLinkConfig().GetNiceMapName(serverData.Map));
 	}
 		
 	void ~DeparturePointWidget()
@@ -120,9 +127,9 @@ class DeparturePointWidget  extends ScriptedWidgetEventHandler
 	}
 
 	void UpdateServerStatus(int cid, int status, string oid, UApiServerStatus data)
-	{	
-      	if (status == UAPI_SUCCESS &&  m_Root && m_Root.IsVisible() && m_Status_Image && data)
-		{  
+	{
+      	if (status == UAPI_SUCCESS && m_Root && m_Root.IsVisible() && m_Status_Image && data)
+		{ 
 			//If its a success
 			if (data.Status == "Online")
 			{
@@ -138,6 +145,7 @@ class DeparturePointWidget  extends ScriptedWidgetEventHandler
 					m_Queue_Frame.Show(true);
 					m_Queue_Text.SetText(data.QueuePlayers.ToString());
 				}
+				m_Transfer.SetAlpha(1.0);
 			} else 
 			{
 				m_Status_Image.SetColor(ARGB(255, 255, 61, 0));
@@ -147,7 +155,7 @@ class DeparturePointWidget  extends ScriptedWidgetEventHandler
 				m_Transfer.SetAlpha(0.3);
 			}
       	} else 
-		  {
+		{
 			MLLog.Err("Error Returning Status: " + status);
 			m_ServerOnline = true; //For now to ensure if an error happens
 		}

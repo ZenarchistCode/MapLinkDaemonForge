@@ -1,7 +1,65 @@
 modded class PlayerBase extends ManBase
 {
 	protected ref Timer m_MapLink_UnderProtectionTimer;
+	protected int m_LastMapTransferTimestamp = 0;
+	protected int m_SecondsCooldownBetweenTransfer; // todo: config
 			
+	int GetLastMapTransferTimestamp()
+	{
+		return m_LastMapTransferTimestamp;
+	}
+
+	void SetLastMapTransferTimestamp(int timestamp)
+	{
+		m_LastMapTransferTimestamp = timestamp;
+	}
+
+	int GetSecondsCooldownBetweenTransfer()
+	{
+		return m_SecondsCooldownBetweenTransfer;
+	}
+
+	void SyncLastMapTransferTimestamp()
+	{
+		int nowTimestamp = UUtil.GetUnixInt();
+		int lastTravelTimestamp = GetLastMapTransferTimestamp();
+		int timePassed = -1;
+
+		if (lastTravelTimestamp > 0)
+		{
+			timePassed = nowTimestamp - lastTravelTimestamp;
+		}
+
+		//! todo: config timer
+		RPCSingleParam(MAPLINK_TRAVELTIMER, new Param2<int, int>(m_LastMapTransferTimestamp, GetMapLinkConfig().TravelCooldownSeconds), true, GetIdentity());
+	}
+
+	override void OnConnect()
+	{
+		super.OnConnect();
+
+		if (!GetIdentity() || GetGame().IsClient())
+			return;
+
+		if (GetMapLinkConfig().TravelCooldownSeconds <= 0)
+			return;
+
+		UApi().db(PLAYER_DB).PublicLoad(
+					"MapLinkLastTransferTime", 
+					GetIdentity().GetId(), 
+					this, 
+					"ReceiveLastMapLinkTransferTimeFromDB");
+	}
+
+	void ReceiveLastMapLinkTransferTimeFromDB(int cid, int status, string oid, string data)
+	{
+		if (status == UAPI_SUCCESS || status == UAPI_EMPTY)
+		{
+			string dataFromJSON = SimpleValueStore.GetValue(data);
+			SetLastMapTransferTimestamp(dataFromJSON.ToInt());
+		}
+	}
+
 	protected void UpdateMapLinkProtectionClient(int time)
 	{
 		MLLog.Debug("UpdateMapLinkProtectionClient" + time);
@@ -251,6 +309,7 @@ modded class PlayerBase extends ManBase
 		data.m_TransferPoint = "";
 		m_TransferPoint = "";
 		m_BrokenLegState = data.m_BrokenLegState;
+
 		//SetBleedingBits(data.m_BleedingBits);
 
 		if (GetBleedingManagerServer())
@@ -408,6 +467,27 @@ modded class PlayerBase extends ManBase
 
 		if (GetGame().IsDedicatedServer())
 		{
+			//! TODO: THIS SHOULD BE SENT TO CLIENT INTERFACE SOMEHOW!!!
+			// Check time since last transfer 
+			int nowTimestamp = UUtil.GetUnixInt();
+			int lastTravelTimestamp = GetLastMapTransferTimestamp();
+			MLLog.Debug("[MapLink Transfer] Timestamp=" + lastTravelTimestamp);
+
+			if (GetMapLinkConfig().TravelCooldownSeconds > 0)
+			{
+				if (lastTravelTimestamp > 0)
+				{
+					int timePassed = nowTimestamp - lastTravelTimestamp;
+
+					MLLog.Debug("[MapLink Transfer] Do not allow transfer for " + GetIdentity().GetId() + ": Time Passed Since Last Transfer=" + timePassed + "/" + GetMapLinkConfig().TravelCooldownSeconds + " seconds");
+
+					if (timePassed < GetMapLinkConfig().TravelCooldownSeconds)
+					{
+						return;
+					}
+				}
+			}
+
 			MLLog.Debug("Player: " + GetIdentity().GetName() + "("+ GetIdentity().GetId() + ") is requesting to travel to " + arrivalPoint + " on Server: " + serverName);
 			UApiDoTravel(arrivalPoint, serverName);
 		}
@@ -455,6 +535,8 @@ modded class PlayerBase extends ManBase
 			MLLog.Debug("Working with Currency Key: " + GetMapLinkConfig().GetCurrencyKey(id));
 			if (GetIdentity() && (cost <= 0 || UGetPlayerBalance(GetMapLinkConfig().GetCurrencyKey(id)) >= cost))
 			{
+				m_LastMapTransferTimestamp = UUtil.GetUnixInt();
+				UApi().db(PLAYER_DB).PublicSave("MapLinkLastTransferTime", m_MapLinkGUIDCache, SimpleValueStore.StoreValue(m_LastMapTransferTimestamp.ToString()),NULL,"");
 				URemoveMoney(GetMapLinkConfig().GetCurrencyKey(id),cost);
 				this.UApiSaveTransferPoint(arrivalPoint);
 				this.SavePlayerToUApi();
@@ -479,6 +561,27 @@ modded class PlayerBase extends ManBase
 	override void OnRPC(PlayerIdentity sender, int rpc_type, ParamsReadContext ctx)
 	{
 		super.OnRPC(sender, rpc_type, ctx);
+
+		if (rpc_type == MAPLINK_TRAVELTIMER && GetGame().IsClient()) 
+		{
+			Param2<int, int> timedata;
+			if (ctx.Read(timedata))	
+			{
+				m_LastMapTransferTimestamp = timedata.param1;
+				m_SecondsCooldownBetweenTransfer = timedata.param2;
+
+				DeparturePointMenu departureMenu;
+
+				if (GetGame().GetUIManager())
+				{
+					departureMenu = DeparturePointMenu.Cast(GetGame().GetUIManager().GetMenu());
+					if (departureMenu)
+					{
+						departureMenu.UpdateCooldownTimer();
+					}
+				}
+			}
+		}
 		
 		if (rpc_type == MAPLINK_AFTERLOADCLIENT && GetGame().IsClient()) 
 		{

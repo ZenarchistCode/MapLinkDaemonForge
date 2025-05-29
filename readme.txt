@@ -8,7 +8,7 @@ I did not create this mod: I've simply updated and repacked it for use with DayZ
 
 All credit goes to Daemonforge who is the original creator of this mod.
 
-Here is his original YouTube demonstration of MapLink: https://www.youtube.com/watch?v=0gMkOCxlQNA
+Here is a short demonstration of MapLink: https://youtu.be/vIDmV2hu-Fo
 
 Here is my video guide on how to set this all up: https://youtu.be/1slJ5msQiVA
 

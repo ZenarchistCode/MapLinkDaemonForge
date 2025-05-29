@@ -39,7 +39,9 @@ class ActionMapLinkOpenOnAny: ActionInteractBase
 	override void OnExecuteServer(ActionData action_data)
 	{
 		super.OnExecuteServer(action_data);
-		
+
+		action_data.m_Player.SyncLastMapTransferTimestamp();
+
 		//Something should go here for better validation server side? Right now it just checks for the nearest depaturePoint to the player within 50 meters
 	}
 	

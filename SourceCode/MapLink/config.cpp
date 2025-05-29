@@ -60,3 +60,13 @@ class CfgMods
         };
     };
 };
+
+class CfgVehicles
+{
+	class HouseNoDestruct;
+	class MapLink_boat_small9 : HouseNoDestruct
+	{
+		scope = 1;
+		model="DZ\structures_sakhal\wrecks\boat_small9.p3d";
+	};
+};
