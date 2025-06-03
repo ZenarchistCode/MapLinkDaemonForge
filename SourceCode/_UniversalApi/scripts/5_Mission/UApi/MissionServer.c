@@ -8,6 +8,12 @@ modded class MissionServer extends MissionBase
 	
 	override void OnClientPrepareEvent(PlayerIdentity identity, out bool useDB, out vector pos, out float yaw, out int preloadTimeout)
 	{
+		if (!UApi().IsOnline())
+		{
+			Error("[UniversalAPI] API is not connected! Kicking player " + identity.GetId() + " to avoid database sync issues. Please start the Universal API Manager.");
+			GetGame().DisconnectPlayer(identity);
+		}
+
 		if (identity)
 		{
 			//Print("[UAPI] On Prepare - GUID: " + identity.GetId());

@@ -2,7 +2,7 @@ modded class PlayerBase extends ManBase
 {
 	protected ref Timer m_MapLink_UnderProtectionTimer;
 	protected int m_LastMapTransferTimestamp = 0;
-	protected int m_SecondsCooldownBetweenTransfer; // todo: config
+	protected int m_SecondsCooldownBetweenTransfer;
 			
 	int GetLastMapTransferTimestamp()
 	{
@@ -23,14 +23,6 @@ modded class PlayerBase extends ManBase
 	{
 		int nowTimestamp = UUtil.GetUnixInt();
 		int lastTravelTimestamp = GetLastMapTransferTimestamp();
-		int timePassed = -1;
-
-		if (lastTravelTimestamp > 0)
-		{
-			timePassed = nowTimestamp - lastTravelTimestamp;
-		}
-
-		//! todo: config timer
 		RPCSingleParam(MAPLINK_TRAVELTIMER, new Param2<int, int>(m_LastMapTransferTimestamp, GetMapLinkConfig().TravelCooldownSeconds), true, GetIdentity());
 	}
 
@@ -467,7 +459,6 @@ modded class PlayerBase extends ManBase
 
 		if (GetGame().IsDedicatedServer())
 		{
-			//! TODO: THIS SHOULD BE SENT TO CLIENT INTERFACE SOMEHOW!!!
 			// Check time since last transfer 
 			int nowTimestamp = UUtil.GetUnixInt();
 			int lastTravelTimestamp = GetLastMapTransferTimestamp();
@@ -565,6 +556,7 @@ modded class PlayerBase extends ManBase
 		if (rpc_type == MAPLINK_TRAVELTIMER && GetGame().IsClient()) 
 		{
 			Param2<int, int> timedata;
+
 			if (ctx.Read(timedata))	
 			{
 				m_LastMapTransferTimestamp = timedata.param1;

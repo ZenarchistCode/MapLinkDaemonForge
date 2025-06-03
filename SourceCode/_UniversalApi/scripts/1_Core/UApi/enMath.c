@@ -36,7 +36,7 @@ modded class Math
 	{
 		if (QRandomRemaining() <= 0)
 		{
-			Error2("[UAPI] QRandom", "Q RANDOM OUT OF NUMBERS USING VANILLA RANDOM");
+			Print("[UAPI] Q RANDOM OUT OF NUMBERS USING VANILLA RANDOM");
 			return RandomInt(int.MIN, int.MAX);
 		}
 
@@ -51,7 +51,7 @@ modded class Math
 	{
 		if (QRandomRemaining() <= 0)
 		{
-			Error2("[UAPI] QRandomInt", "Q RANDOM OUT OF NUMBERS USING VANILLA RANDOM");
+			Print("[UAPI] Q RANDOM OUT OF NUMBERS USING VANILLA RANDOM");
 			return RandomInt(min, max);
 		}
 
@@ -85,7 +85,7 @@ modded class Math
 	{
 		if (QRandomRemaining() <= 0)
 		{
-			Error2("[UAPI] QRandomFloat", "Q RANDOM OUT OF NUMBERS USING VANILLA RANDOM");
+			Print("[UAPI] Q RANDOM OUT OF NUMBERS USING VANILLA RANDOM");
 			return RandomFloat(min, max);
 		}
 
@@ -114,7 +114,7 @@ modded class Math
 	{
 		if (QRandomRemaining() <= 0)
 		{
-			Error2("[UAPI] QRandomFlip", "Q RANDOM OUT OF NUMBERS USING VANILLA RANDOM");
+			Print("[UAPI] Q RANDOM OUT OF NUMBERS USING VANILLA RANDOM");
 			int retval = RandomInt(1, int.MAX) % 2;
 			return (retval != 0);
 		}

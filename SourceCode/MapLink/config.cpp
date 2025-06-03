@@ -69,4 +69,14 @@ class CfgVehicles
 		scope = 1;
 		model="DZ\structures_sakhal\wrecks\boat_small9.p3d";
 	};
+	class MapLink_TrailMap_Enoch : HouseNoDestruct
+	{
+		scope = 1;
+		model = "\DZ\structures_bliss\signs\Tourist\TrailMap_Enoch.p3d";
+	}; 
+	class MapLink_TrailMap_Chernarus : HouseNoDestruct
+	{
+		scope = 1;
+		model = "\DZ\structures\signs\Tourist\trailmap_noarrow.p3d";
+	}; 
 };

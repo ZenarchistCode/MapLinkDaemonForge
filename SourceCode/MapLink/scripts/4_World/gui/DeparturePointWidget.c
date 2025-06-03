@@ -128,7 +128,10 @@ class DeparturePointWidget  extends ScriptedWidgetEventHandler
 
 	void UpdateServerStatus(int cid, int status, string oid, UApiServerStatus data)
 	{
-      	if (status == UAPI_SUCCESS && m_Root && m_Root.IsVisible() && m_Status_Image && data)
+		if (!m_Root || !m_Root.IsVisible() || !m_Status_Image || !m_Transfer || !data)
+			return;
+
+      	if (status == UAPI_SUCCESS)
 		{ 
 			//If its a success
 			if (data.Status == "Online")

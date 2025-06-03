@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\scripts",
+    "\\scripts\\4_World",
+    "\\scripts\\4_World\\classes",
+    "\\scripts\\4_World\\classes\\UserActionsComponent",
+    "\\scripts\\4_World\\classes\\UserActionsComponent\\Actions",
+    "\\scripts\\4_World\\classes\\UserActionsComponent\\Actions\\Instant",
+    "\\scripts\\4_World\\gui",
+    "\\scripts\\5_Mission",
+    "\\scripts\\5_Mission\\mission"
+  ],
+  "SelectedNode": "\\config.cpp",
+  "PreviewInSolutionExplorer": false
+}

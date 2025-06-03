@@ -46,7 +46,7 @@ class DeparturePointMenu extends UIScriptedMenu
 		
 		m_Heading				= RichTextWidget.Cast(layoutRoot.FindAnyWidget("Heading"));
 		
-		
+		GetGame().GetCallQueue(CALL_CATEGORY_GUI).Remove(UpdateCooldownTimer);
 		GetGame().GetCallQueue(CALL_CATEGORY_GUI).CallLater(this.CreateChildern, 50);
 		m_CanTravel = false;
 
@@ -74,9 +74,21 @@ class DeparturePointMenu extends UIScriptedMenu
 
 	void UpdateCooldownTimer()
 	{
+		if (!GetLayoutRoot())
+			return;
+
 		PlayerBase pb = PlayerBase.Cast(GetGame().GetPlayer());
 		if (!pb)
+		{
 			return;
+		}
+
+		if (!dPointWidgets)
+		{
+			// UI hasn't properly loaded yet - retry
+			GetGame().GetCallQueue(CALL_CATEGORY_GUI).CallLater(UpdateCooldownTimer, 1000, false);
+			return;
+		}
 
 		int nowTimestamp = UUtil.GetUnixInt();
 		int lastTravelTimestamp = pb.GetLastMapTransferTimestamp();

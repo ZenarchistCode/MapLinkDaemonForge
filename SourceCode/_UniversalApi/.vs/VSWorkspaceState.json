@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\scripts",
+    "\\scripts\\3_Game",
+    "\\scripts\\3_Game\\UApi",
+    "\\scripts\\3_Game\\UApi\\CallBacks",
+    "\\scripts\\4_World",
+    "\\scripts\\4_World\\UApi",
+    "\\scripts\\4_World\\UApi\\Entities",
+    "\\scripts\\5_Mission",
+    "\\scripts\\5_Mission\\UApi"
+  ],
+  "SelectedNode": "\\scripts\\5_Mission\\UApi\\MissionServer.c",
+  "PreviewInSolutionExplorer": false
+}
