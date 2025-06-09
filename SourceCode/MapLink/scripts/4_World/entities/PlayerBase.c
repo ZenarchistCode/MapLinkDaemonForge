@@ -67,7 +67,21 @@ modded class PlayerBase extends ManBase
 		{
 			GetDayZGame().MapLinkStopCountDown();		
 			GetInputController().OverrideMeleeEvade(false, false);
-			GetInputController().OverrideRaise(false, false);
+
+			bool expansionSafeZone = false;
+
+			#ifdef EXPANSIONMODCORE
+			if (Expansion_IsInSafeZone())
+			{
+				// Expansion safe zone forces its own non-raise so don't override it.
+				expansionSafeZone = true;
+			}
+			#endif
+
+			if (!expansionSafeZone)
+			{
+				GetInputController().OverrideRaise(false, false);
+			}
 		}
 	}
 	
@@ -553,6 +567,7 @@ modded class PlayerBase extends ManBase
 	{
 		super.OnRPC(sender, rpc_type, ctx);
 
+		/*
 		if (rpc_type == MAPLINK_TRAVELTIMER && GetGame().IsClient()) 
 		{
 			Param2<int, int> timedata;
@@ -574,6 +589,7 @@ modded class PlayerBase extends ManBase
 				}
 			}
 		}
+		*/
 		
 		if (rpc_type == MAPLINK_AFTERLOADCLIENT && GetGame().IsClient()) 
 		{

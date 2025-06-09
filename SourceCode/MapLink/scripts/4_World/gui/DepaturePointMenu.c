@@ -26,7 +26,7 @@ class DeparturePointMenu extends UIScriptedMenu
 	protected string m_TravelTo_ArrivalPoint;
 	protected string m_TravelTo_ServerName;
 
-	protected bool m_CanTravel = false;
+	protected bool m_CanTravel = true;
 	
 	override Widget Init()
     {
@@ -46,9 +46,9 @@ class DeparturePointMenu extends UIScriptedMenu
 		
 		m_Heading				= RichTextWidget.Cast(layoutRoot.FindAnyWidget("Heading"));
 		
-		GetGame().GetCallQueue(CALL_CATEGORY_GUI).Remove(UpdateCooldownTimer);
-		GetGame().GetCallQueue(CALL_CATEGORY_GUI).CallLater(this.CreateChildern, 50);
-		m_CanTravel = false;
+		//GetGame().GetCallQueue(CALL_CATEGORY_GUI).Remove(UpdateCooldownTimer);
+		GetGame().GetCallQueue(CALL_CATEGORY_GUI).CallLater(this.CreateChildren, 50);
+		//m_CanTravel = false;
 
 		return layoutRoot;
 	}
@@ -72,7 +72,7 @@ class DeparturePointMenu extends UIScriptedMenu
 		MLLockControls();
 	}
 
-	void UpdateCooldownTimer()
+	/*void UpdateCooldownTimer()
 	{
 		if (!GetLayoutRoot())
 			return;
@@ -125,9 +125,9 @@ class DeparturePointMenu extends UIScriptedMenu
 
 		m_Heading.SetText(m_MapLinkDepaturePoint.DisplayName);
 		m_CanTravel = true;
-	}
+	}*/
 
-	void CreateChildern()
+	void CreateChildren()
 	{
 		if (!dPointWidgets)
 		{

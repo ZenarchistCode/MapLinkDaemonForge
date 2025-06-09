@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "P:\\ZenMods\\Daemon\\_MapLinkBase\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|P:\\ZenMods\\Daemon\\_MapLinkBase\\scripts\\4_World\\entities\\PlayerDataStore.c||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:scripts\\4_World\\entities\\PlayerDataStore.c||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|P:\\ZenMods\\Daemon\\_MapLinkBase\\scripts\\4_World\\entities\\PlayerBase.c||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:scripts\\4_World\\entities\\PlayerBase.c||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|P:\\ZenMods\\Daemon\\_MapLinkBase\\scripts\\4_World\\entities\\PlayerDataStore.c||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:scripts\\4_World\\entities\\PlayerDataStore.c||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|P:\\ZenMods\\Daemon\\_MapLinkBase\\scripts\\Common\\common.c||{3B902123-F8A7-4915-9F01-361F908088D0}",
@@ -42,29 +42,30 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "PlayerBase.c",
               "DocumentMoniker": "P:\\ZenMods\\Daemon\\_MapLinkBase\\scripts\\4_World\\entities\\PlayerBase.c",
               "RelativeDocumentMoniker": "scripts\\4_World\\entities\\PlayerBase.c",
               "ToolTip": "P:\\ZenMods\\Daemon\\_MapLinkBase\\scripts\\4_World\\entities\\PlayerBase.c",
               "RelativeToolTip": "scripts\\4_World\\entities\\PlayerBase.c",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-05-10T01:42:11.379Z"
+              "WhenOpened": "2025-05-10T01:42:11.379Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "PlayerDataStore.c",
               "DocumentMoniker": "P:\\ZenMods\\Daemon\\_MapLinkBase\\scripts\\4_World\\entities\\PlayerDataStore.c",
               "RelativeDocumentMoniker": "scripts\\4_World\\entities\\PlayerDataStore.c",
               "ToolTip": "P:\\ZenMods\\Daemon\\_MapLinkBase\\scripts\\4_World\\entities\\PlayerDataStore.c",
               "RelativeToolTip": "scripts\\4_World\\entities\\PlayerDataStore.c",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-05-10T01:04:19.659Z",
               "EditorCaption": ""
@@ -139,7 +140,8 @@
               "RelativeToolTip": "scripts\\Common\\common.c",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-05-10T00:57:43.895Z"
+              "WhenOpened": "2025-05-10T00:57:43.895Z",
+              "EditorCaption": ""
             }
           ]
         }

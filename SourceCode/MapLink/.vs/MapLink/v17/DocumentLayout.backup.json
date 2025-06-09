@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "P:\\ZenMods\\Daemon\\MapLink\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|P:\\ZenMods\\Daemon\\MapLink\\config.cpp||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:config.cpp||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|P:\\ZenMods\\Daemon\\MapLink\\scripts\\4_World\\entities\\PlayerBase.c||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:scripts\\4_World\\entities\\PlayerBase.c||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
@@ -30,11 +34,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "config.cpp",
+              "DocumentMoniker": "P:\\ZenMods\\Daemon\\MapLink\\config.cpp",
+              "RelativeDocumentMoniker": "config.cpp",
+              "ToolTip": "P:\\ZenMods\\Daemon\\MapLink\\config.cpp",
+              "RelativeToolTip": "config.cpp",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAAE8AAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-01T04:58:25.196Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "ActionOpenMapLinkMenu.c",
               "DocumentMoniker": "P:\\ZenMods\\Daemon\\MapLink\\scripts\\4_World\\classes\\UserActionsComponent\\Actions\\Instant\\ActionOpenMapLinkMenu.c",
               "RelativeDocumentMoniker": "scripts\\4_World\\classes\\UserActionsComponent\\Actions\\Instant\\ActionOpenMapLinkMenu.c",
@@ -42,12 +59,11 @@
               "RelativeToolTip": "scripts\\4_World\\classes\\UserActionsComponent\\Actions\\Instant\\ActionOpenMapLinkMenu.c",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-05-31T10:23:00.65Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T10:23:00.65Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "MapLinkOpenOnAny.c",
               "DocumentMoniker": "P:\\ZenMods\\Daemon\\MapLink\\scripts\\4_World\\classes\\UserActionsComponent\\Actions\\MapLinkOpenOnAny.c",
               "RelativeDocumentMoniker": "scripts\\4_World\\classes\\UserActionsComponent\\Actions\\MapLinkOpenOnAny.c",
@@ -55,12 +71,11 @@
               "RelativeToolTip": "scripts\\4_World\\classes\\UserActionsComponent\\Actions\\MapLinkOpenOnAny.c",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-05-31T10:22:56.747Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T10:22:56.747Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "DepaturePointMenu.c",
               "DocumentMoniker": "P:\\ZenMods\\Daemon\\MapLink\\scripts\\4_World\\gui\\DepaturePointMenu.c",
               "RelativeDocumentMoniker": "scripts\\4_World\\gui\\DepaturePointMenu.c",
@@ -68,12 +83,11 @@
               "RelativeToolTip": "scripts\\4_World\\gui\\DepaturePointMenu.c",
               "ViewState": "AgIAAEgAAAAAAAAAAAAuwFYAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-05-29T04:58:35.107Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-29T04:58:35.107Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "DeparturePointWidget.c",
               "DocumentMoniker": "P:\\ZenMods\\Daemon\\MapLink\\scripts\\4_World\\gui\\DeparturePointWidget.c",
               "RelativeDocumentMoniker": "scripts\\4_World\\gui\\DeparturePointWidget.c",
@@ -85,7 +99,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "PlayerBase.c",
               "DocumentMoniker": "P:\\ZenMods\\Daemon\\MapLink\\scripts\\4_World\\entities\\PlayerBase.c",
               "RelativeDocumentMoniker": "scripts\\4_World\\entities\\PlayerBase.c",
