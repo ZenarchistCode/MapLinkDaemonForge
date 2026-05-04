@@ -1,3 +1,4 @@
+#ifdef MAPLINK
 modded class PlayerBase
 {
 	override void SendUApiAfterLoadClient()
@@ -16,12 +17,18 @@ modded class PlayerDataStore
 {
 	override void SavePlayer(PlayerBase player)
 	{
-		if (player)
+		if (GetGame().IsServer() && player && player.HaveDog() && player.GetDogSlot())
 		{
 			player.StoreDogInventory();
 			player.StoreDogHealth();
 		}
-		
+
 		super.SavePlayer(player);
+
+		if (GetGame().IsServer() && player && player.HaveDog())
+		{
+			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).Call(player.RestoreDogInventory);
+		}
 	}
 }
+#endif

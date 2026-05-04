@@ -232,7 +232,8 @@ modded class MissionServer extends MissionBase
 				}
 			}
 
-			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(player.SavePlayerToUApi, 100);
+			// Defer API save until AfterStoreLoad + delayed magazine cartridge pass (1200ms) completes
+			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(player.SavePlayerToUApi, 4000);
 			MLLog.Debug("Removing Player from Queue " + identity.GetId());
 			m_PlayerDBQue.Remove(identity.GetId());
 			

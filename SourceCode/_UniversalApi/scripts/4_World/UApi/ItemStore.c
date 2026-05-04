@@ -92,7 +92,11 @@ modded class UApiEntityStore extends UApiObject_Base
 						m_MagAmmo = new array<ref UApiAmmoData>;
 					}
 
-					m_MagAmmo.Insert(new UApiAmmoData(i, dmg, cartType));
+					float dmgSave = dmg;
+					if (dmgSave < 0.000001)
+						dmgSave = 0.001;
+
+					m_MagAmmo.Insert(new UApiAmmoData(i, dmgSave, cartType));
 				}
 			}
 		} else if (item.IsAmmoPile() && Class.CastTo(mag, item))
@@ -120,7 +124,11 @@ modded class UApiEntityStore extends UApiObject_Base
 						m_MagAmmo = new array<ref UApiAmmoData>;
 					}
 
-					m_MagAmmo.Insert(new UApiAmmoData(i, dmg, cartType));
+					float dmgSaveW = dmg;
+					if (dmgSaveW < 0.000001)
+						dmgSaveW = 0.001;
+
+					m_MagAmmo.Insert(new UApiAmmoData(i, dmgSaveW, cartType));
 				}
 			}
 
@@ -130,7 +138,11 @@ modded class UApiEntityStore extends UApiObject_Base
 				cartType = "";
 				if (weap.GetCartridgeInfo(m_CurrentMuzzle, dmg, cartType) && cartType != "" && dmg >= 0)
 				{
-					m_ChamberedRound = new UApiAmmoData(-1, dmg,cartType);
+					float dmgCh = dmg;
+					if (dmgCh < 0.000001)
+						dmgCh = 0.001;
+
+					m_ChamberedRound = new UApiAmmoData(-1, dmgCh, cartType);
 				}
 			}
 
@@ -292,20 +304,12 @@ modded class UApiEntityStore extends UApiObject_Base
 		int count;
 		if (m_IsMagazine && Class.CastTo(mag, item))
 		{
-			count = m_Quantity;
-			mag.ServerSetAmmoCount(count);
-
-			for (i = 0; i < mag.GetAmmoCount(); i++)
+			UApi_ApplyMagazineCartridgesNow(mag);
+			if (m_MagAmmo && m_MagAmmo.Count() > 0)
 			{
-				if (i > m_MagAmmo.Count())
-				{
-					break;
-				}
-
-				if (m_MagAmmo.Get(i) && m_MagAmmo.Get(i).dmg() >= 0 && m_MagAmmo.Get(i).cartTypeName() != "" && m_MagAmmo.Get(i).cartIndex() == i)
-				{
-					mag.SetCartridgeAtIndex(m_MagAmmo.Get(i).cartIndex(), m_MagAmmo.Get(i).dmg(), m_MagAmmo.Get(i).cartTypeName());
-				}
+				ItemBase ibMag = ItemBase.Cast(item);
+				if (ibMag)
+					ibMag.UApi_StoreMagazineCartridgeSnapshot(this);
 			}
 		} else if (item.IsAmmoPile() && Class.CastTo(mag, item))
 		{
@@ -335,5 +339,138 @@ modded class UApiEntityStore extends UApiObject_Base
 		
 		item.SetSynchDirty();
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Call(item.AfterStoreLoad);
+	}
+
+	void UApi_ApplyMagazineCartridgesNow(Magazine_Base mag)
+	{
+		if (!mag)
+			return;
+
+		UApi_MagazineStackRestore(mag, UApi_GetRestoreAmmoCount(), m_MagAmmo);
+	}
+
+	/** Rounds to restore: max of serialized count and per-cartridge rows (handles float m_Quantity vs JSON). */
+	int UApi_GetRestoreAmmoCount()
+	{
+		int fromQty = Math.Floor(m_Quantity + 0.5);
+		int fromArr = 0;
+		if (m_MagAmmo)
+			fromArr = m_MagAmmo.Count();
+
+		int n = fromArr;
+		if (fromQty > n)
+			n = fromQty;
+
+		if (n < 0)
+			n = 0;
+
+		return n;
+	}
+
+	/** Stable ascending copy by cartridge slot (used for magazine restore). */
+	static array<ref UApiAmmoData> UApi_SortedMagAmmoSnapshot(array<ref UApiAmmoData> src)
+	{
+		array<ref UApiAmmoData> rem = new array<ref UApiAmmoData>;
+		array<ref UApiAmmoData> dst = new array<ref UApiAmmoData>;
+		if (!src)
+			return dst;
+
+		for (int si = 0; si < src.Count(); si++)
+			rem.Insert(src.Get(si));
+
+		while (rem.Count() > 0)
+		{
+			int bestI = -1;
+			int bestIdx = int.MAX;
+			for (int j = 0; j < rem.Count(); j++)
+			{
+				UApiAmmoData r = rem.Get(j);
+				if (!r)
+					continue;
+
+				int ci = r.cartIndex();
+				if (bestI < 0 || ci < bestIdx)
+				{
+					bestIdx = ci;
+					bestI = j;
+				}
+			}
+
+			if (bestI < 0)
+				break;
+
+			dst.Insert(rem.Get(bestI));
+			rem.Remove(bestI);
+		}
+
+		return dst;
+	}
+
+	/**
+	 * Refill using the same native path as vanilla CombineItems (ServerStoreCartridge),
+	 * instead of SetCartridgeAtIndex which can remap or reject mod cartridge class names.
+	 */
+	static void UApi_MagazineStackRestore(Magazine_Base mag, int qtyHint, array<ref UApiAmmoData> rounds)
+	{
+		if (!mag)
+			return;
+
+		if (!rounds || rounds.Count() < 1)
+		{
+			int qc = qtyHint;
+			if (qc < 0)
+				qc = 0;
+
+			mag.ServerSetAmmoCount(qc);
+			mag.SetSynchDirty();
+			return;
+		}
+
+		array<ref UApiAmmoData> sorted = UApi_SortedMagAmmoSnapshot(rounds);
+		mag.ServerSetAmmoCount(0);
+
+		for (int bi = 0; bi < sorted.Count(); bi++)
+		{
+			UApiAmmoData round = sorted.Get(bi);
+			if (!round)
+				continue;
+
+			string ctype = round.cartTypeName();
+			if (ctype == "")
+				continue;
+
+			float d = round.dmg();
+			if (d < 0)
+				continue;
+
+			if (d < 0.000001)
+				d = 0.001;
+
+			if (!mag.ServerStoreCartridge(d, ctype))
+				Print("[UAPI][WARN] UApi_MagazineStackRestore: ServerStoreCartridge failed type=" + ctype);
+		}
+
+		int want = qtyHint;
+		if (want < sorted.Count())
+			want = sorted.Count();
+
+		UApiAmmoData pad = sorted.Get(sorted.Count() - 1);
+		float padD = 0.001;
+		string padT = "";
+		if (pad)
+		{
+			padT = pad.cartTypeName();
+			padD = pad.dmg();
+			if (padD < 0.000001)
+				padD = 0.001;
+		}
+
+		while (padT != "" && mag.GetAmmoCount() < want)
+		{
+			if (!mag.ServerStoreCartridge(padD, padT))
+				break;
+		}
+
+		mag.SetSynchDirty();
 	}
 }
